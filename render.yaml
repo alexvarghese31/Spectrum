@@ -16,15 +16,13 @@ services:
   # The React Frontend Service
   - type: static
     name: spectrum-frontend
-    env: static
+    # The 'env: static' line that was here has been REMOVED
     rootDir: frontend
     buildCommand: npm install && npm run build
     publishDir: dist
-    # Rewrite rule for single-page apps like React
     rewriteRules:
       - source: /*
         destination: /index.html
-    # This automatically injects the backend URL into the frontend environment
     envVars:
       - key: VITE_API_URL
         fromService:
